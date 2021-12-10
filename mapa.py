@@ -22,7 +22,7 @@ def mapa(df,nome,col,cor="goldred"):
 
     fig = (mar+fundo+linhas+mapa
            ).properties(width=400, height=400
-                        ).project(type='orthographic',rotate=dic[nome]
+                        ).project(type='orthographic',rotate=[-17, 0 ,0]#dic[nome]
                                   ).configure_view(strokeWidth=0)
     return fig
 
