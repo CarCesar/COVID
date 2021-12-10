@@ -3,3 +3,4 @@ pandas
 datetime
 altair
 vega_datasets
+jsonschema==3.2
