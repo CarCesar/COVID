@@ -179,8 +179,10 @@ if P1 == 'Vaccination':
         nt0='people_fully_vaccinated'
     if NT2 == 'Per Hundred':
         nt = nt0 + '_per_hundred'
+        logaritmo = False
     else:
         nt = nt0
+        logaritmo = True
     df = dados()
     df1 = auxilio.faz_tabela_vacina(df,menu,nt)
 
@@ -215,5 +217,5 @@ if P1 == 'Vaccination':
         logaritmo1 = False
     
     # componente linha 2
-    g1 = graficos.grafico2(df1,nt,nt0)
+    g1 = graficos.grafico2(df1,nt,nt0,logaritmo)
     f2l2c1.altair_chart(g1)
