@@ -1,3 +1,5 @@
+import pandas as pd
+
 def clasifica_df(df,menu,d,NT):
     df_faz_dash = df.query(f'date == "{d}" and continent== "{menu}"') 
     df_faz_dash = df_faz_dash.sort_values(by=[NT],ascending=False)
@@ -17,3 +19,22 @@ def titulo(frase):
     a = frase.split("_")
     b = " ".join(a).title()
     return b
+
+def tabela_group_continente(df):
+    a = df[['location','date','new_cases','new_deaths','population']][df['location'].isin(['South America','Africa','Europe',
+                                                                                           'Asia','Oceania','North America'])]
+    a.date = a.date.astype('datetime64')
+    a['continent'] = a['location']
+    source = a.groupby([pd.Grouper(key="date", freq="1M"),"location",'population','continent']).sum().reset_index()
+    source['new_deaths_by_population']=source.new_deaths/source.population * 10**6
+    source['new_cases_by_population']=source.new_cases/source.population * 10**6
+    return source
+
+def tabela_group_pais(df):
+    a = df[['location','date','new_cases','new_deaths','population']][~df['location'].isin(['South America','Africa','Europe',
+                                                                                           'Asia','Oceania','North America'])]
+    a.date = a.date.astype('datetime64')
+    source = a.groupby([pd.Grouper(key="date", freq="1M"),"location",'population']).sum().reset_index()
+    source['new_deaths_by_population']=source.new_deaths/source.population * 10**6
+    source['new_cases_by_population']=source.new_cases/source.population * 10**6
+    return source
