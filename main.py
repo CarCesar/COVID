@@ -217,3 +217,72 @@ if P1 == 'Vaccination':
     # componente linha 2
     g1 = graficos.grafico2(df1,nt,nt0,logaritmo)
     f2l2c1.altair_chart(g1)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+################################## Escrita ######################################
+if P1=='The Vis':
+    st.markdown("""
+    <div id = 'tudo' style='font-family: "Courier", Courier, monospace;'>
+    <h2 id = 'h1' style='font-family: "Courier", Courier, monospace;'>O trabalho</h2>
+    <div class = 'tr' style='font-family: "Courier", Courier, monospace;'>O trabalho foi fazer uma visualização dado os assuntos vistos nas aulas de Visualização da Informação do Mestrado em Modelagem Matematica da EMAP - FGV, com a professora Asla.</div>
+        
+    <h2 style='font-family: "Courier", Courier, monospace;'>A ideia</h2>
+    <p style='font-family: "Courier", Courier, monospace;'>Minha ideia a principio foi pegar dados que tivem dados temporais e espaciais pois eu queria muito utilizar mapa. Portanto, depois de algumas pesquisas resolvi pegar os dados de COVID pelo mundo.
+    Depois de estudar um pouco sobre os dados cheguei a conclusão que teria 3 grandes grupos importantes <em>Casos</em>, <em>Mortes</em> e <em>Vacinação</em>.
+    </p>
+
+    <h3 style='font-family: "Courier", Courier, monospace;'>Casos</h3>
+    <p style='font-family: "Courier", Courier, monospace;'>Dentro de casos teve 2 subgrupos que achei legal para fazer analise,<em>Novos Casos</em>, aonde a gente nem um nivel de como está a covid em determinado local hoje, ou em tal dia. 
+        E <em>Total de Casos</em> aonde a gente vê como foi a covid em tal lugar até determinado dia.</p>
+    <h3 style='font-family: "Courier", Courier, monospace;'>Mortes</h3>
+    <p style='font-family: "Courier", Courier, monospace;'>Em mortes, novamente, foram 2 subgrupos que achei legal para fazer analise,<em>Novas Mortes</em>, em que a gente tem uma ideia de como a covid esta ceifando vidas em determinado local hoje, ou em tal dia. 
+            E <em>Total de Mortes</em> aonde a gente vê quão devastador foi a covid em tal lugar até determinado dia.</p>
+    <h3 style='font-family: "Courier", Courier, monospace;'>Vacinação</h3>
+    <p style='font-family: "Courier", Courier, monospace;'>
+        Aqui não seria possivel fazer uma analise relacionada aos vaicnados naquele dia, pois tinha vários dados faltantes. 
+        Porém diferente dos demais, o objetivo é que toda a população seja vacinada e além disso, seja totalmente vacinada.
+        Portanto, perdemos a variavel tempo, porém ganhamos as variaveis <em>Vacinadas</em> e <em>Totalmente Vacinadas</em>, e cada uma delas ainda pode ser a quantidade total ou um porcentagem da população total.
+    </p>
+    <h2 style='font-family: "Courier", Courier, monospace;'>Execução</h2>
+    
+    </div>
+
+    <style>
+        h2{color:#AAAAFF}
+        em{color:#CCCCFF}
+        h3{color:#BBBBFF}
+    </style>
+    
+    """,unsafe_allow_html=True)
+    v1,v2 = st.columns(2)
+    v1.markdown('''<p style='font-family: "FreeMono", monospace;'>Para casos e mortes usei um quadro bem parecido. Onde alinhei uma primeira coluna para selecionar o dado que deseja ver, o continete e o dia.
+    Sendo a segunda coluna um mapa do continente naquele dia com o dado selecionado e a terceira coluna uma lista com os 4 paises daquele continente com maiores indices do dado selecionado. 
+    Na segunda linha é uma visualização da quantidade,  Onde o scater plot tem no tamanho de cada circulo a quantidade, porém na barra também tem está quantidade, só que em escala log. Acredito que juntando essas informações com os valores mostrado na tela quando escolhemos um barra seja compreensivel.
+    </p>
+    ''',unsafe_allow_html=True)
+    v2.image('casos.png')
+    v3,v4=st.columns(2)
+    v3.image('vac.png')
+    v4.markdown("""<p style='font-family:"Courier", monospace;'>Contudo a visualização para Vacinação foi bem parecida, porém na hora de fazer a segunda coluna, troquei os valores para fazer o scater plot e coloquei no Y o proprio Pais com tambem esta no bar plot, e no X eu coloquei a data, pois paises lançam dados em dias diferentes e não são todos os dias. 
+        Então peguei os dados do ultimo dia que cada pais disponibilizou os dados.</p>
+    """,unsafe_allow_html=True)
+    
+    
+    
+st.markdown('''<style>
+                    body{font-family: "Courier", Courier, monospace;}
+                    [data-baseweb]{font-family: "Courier", Courier, monospace;}
+                </style>''',unsafe_allow_html=True)
