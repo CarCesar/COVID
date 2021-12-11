@@ -54,9 +54,9 @@ if P1 == 'Cases':
     ("Africa", "Europe", "South America", 'North America', "Asia", "Oceania"),
                            )
     
-    d = b0.date_input('Dia',value=datetime.date(2021, 10, 24),
-                              min_value= datetime.date(2020, 1, 1),)
-                              #max_value= datetime.date(2021, 10, 24) )
+    d = b0.date_input('Dia',value=datetime.date(2021, 12, 10),
+                              min_value= datetime.date(2020, 1, 1),
+                              max_value= datetime.date(2021, 12, 10) )
     
     l0c1.markdown(' \n ')
     
@@ -65,7 +65,7 @@ if P1 == 'Cases':
     else:
         nt='total_cases'
     df = dados()
-    df1 = auxilio.clasifica_df(df,menu,d,NT)
+    df1 = auxilio.clasifica_df(df,menu,d,nt)
     
 
     
@@ -81,22 +81,20 @@ if P1 == 'Cases':
         f0l1c2.image(paises['flag'],width=70)
         f0l1c2.write(f'\~~~ {num+1}º ~~~')
         if NT =='New cases':
-            f0l1c3.metric(label=paises['location'], value=int(paises['new_cases']), delta=round((paises['new_cases']-paises['new_cases_smoothed'])/paises['new_cases_smoothed'],5),delta_color="inverse")
+            f0l1c3.metric(label=paises['location'], value='{0:,}'.format(int(paises['new_cases'])), 
+                          delta=round((paises['new_cases']-paises['new_cases_smoothed'])/paises['new_cases_smoothed'],5),delta_color="inverse")
         else:
-            f0l1c3.metric(label=paises['location'], value=int(paises['total_cases']), delta=int(paises['new_cases']),delta_color="inverse")
+            f0l1c3.metric(label=paises['location'], value='{0:,}'.format(int(paises['total_cases'])), delta='{0:,}'.format(int(paises['new_cases'])) 
+                          ,delta_color="inverse")
     
     # Linha 2
     b,f0l2c1,b=st.columns([5,24,1])
     
-    # linha 3
-    if NT =='Total cases': 
-        b,f0l3c1,b=st.columns([13,16,1])
-        logaritmo0 = f0l3c1.checkbox('log scale')
-    else:
-        logaritmo0 = False
+    #df para grafico 2
+    df2 = df1.query(f'{nt}>0')
     
     # componente linha 2
-    g1 = graficos.grafico1(df1,nt,logaritmo0)
+    g1 = graficos.grafico1(df2,nt)
     f0l2c1.altair_chart(g1)
     
     
@@ -113,9 +111,9 @@ if P1 == 'Deaths':
     ("Africa", "Europe", "South America", 'North America', "Asia", "Oceania"),
                            )
     
-    d = b0.date_input('Dia',value=datetime.date(2021, 10, 24),
-                              min_value= datetime.date(2020, 1, 1),)
-                              #max_value= datetime.date(2021, 10, 24) )
+    d = b0.date_input('Dia',value=datetime.date(2021, 12, 10),
+                              min_value= datetime.date(2020, 1, 1),
+                              max_value= datetime.date(2021, 12, 10) )
     
     l0c1.markdown(' \n ')
     
@@ -124,7 +122,7 @@ if P1 == 'Deaths':
     else:
         nt='total_deaths'
     df = dados()
-    df1 = auxilio.clasifica_df(df,menu,d,NT)
+    df1 = auxilio.clasifica_df(df,menu,d,nt)
     
     
     # Mapa
@@ -139,22 +137,20 @@ if P1 == 'Deaths':
         f1l1c2.image(paises['flag'],width=70)
         f1l1c2.write(f'\~~~ {num+1}º ~~~')
         if NT =='New deaths':
-            f1l1c3.metric(label=paises['location'], value=int(paises['new_deaths']), delta=round((paises['new_deaths']-paises['new_deaths_smoothed'])/paises['new_deaths_smoothed'],5),delta_color="inverse")
+            f1l1c3.metric(label=paises['location'], value='{0:,}'.format(int(paises['new_deaths'])), 
+                          delta=round((paises['new_deaths']-paises['new_deaths_smoothed'])/paises['new_deaths_smoothed'],5),delta_color="inverse")
         else:
-            f1l1c3.metric(label=paises['location'], value=int(paises['total_deaths']), delta=int(paises['new_deaths']),delta_color="inverse")
+            f1l1c3.metric(label=paises['location'], value='{0:,}'.format(int(paises['total_deaths'])), 
+                          delta='{0:,}'.format(int(paises['new_deaths'])),delta_color="inverse")
 
     # Linha 2
     b,f1l2c1,b=st.columns([5,24,1])
     
-    # linha 3
-    if NT =='Total deaths': 
-        b,f1l3c1,b=st.columns([13,16,1])
-        logaritmo1 = f1l3c1.checkbox('log scale')
-    else:
-        logaritmo1 = False
+    #df para grafico 2
+    df2 = df1.query(f'{nt}>0')
     
     # componente linha 2
-    g1 = graficos.grafico1(df1,nt,logaritmo1)
+    g1 = graficos.grafico1(df2,nt)
     f1l2c1.altair_chart(g1)
     
 ## Face 2 - Vacinação  ##################################################################################################################################
@@ -200,10 +196,12 @@ if P1 == 'Vaccination':
         paises = df1.iloc[num]
         f2l1c2.image(paises['flag'],width=70)
         f2l1c2.write(f'\~~~ {num+1}º ~~~')
-        if nt =='New deaths':
-            f2l1c3.metric(label=paises['location'], value=int(paises['new_deaths']), delta=round((paises['new_deaths']-paises['new_deaths_smoothed'])/paises['new_deaths_smoothed'],5),delta_color="inverse")
+        if nt0 =='people_vaccinated':
+            f2l1c3.metric(label=paises['location'], value= '{0:,}'.format(int(paises['people_vaccinated'])),
+                          delta=str(paises['people_vaccinated_per_hundred'])+'%',delta_color="normal")
         else:
-            f2l1c3.metric(label=paises['location'], value=int(paises['people_fully_vaccinated']), delta=int(paises['people_fully_vaccinated']),delta_color="inverse")
+            f2l1c3.metric(label=paises['location'], value= '{0:,}'.format(int(paises['people_fully_vaccinated'])),
+                          delta=str(paises['people_fully_vaccinated_per_hundred'])+'%',delta_color="normal")
 
 
    # Linha 2

@@ -1,13 +1,6 @@
 def clasifica_df(df,menu,d,NT):
     df_faz_dash = df.query(f'date == "{d}" and continent== "{menu}"') 
-    if NT == 'New cases':
-        df_faz_dash = df_faz_dash.sort_values(by=['new_cases'],ascending=False)
-    if NT == 'Total cases':
-        df_faz_dash = df_faz_dash.sort_values(by=['total_cases'],ascending=False)
-    if NT == 'New deaths':
-        df_faz_dash = df_faz_dash.sort_values(by=['new_deaths'],ascending=False)
-    if NT == 'Total deaths':
-        df_faz_dash = df_faz_dash.sort_values(by=['total_deaths'],ascending=False)
+    df_faz_dash = df_faz_dash.sort_values(by=[NT],ascending=False)
     return df_faz_dash
 
 def faz_tabela_vacina(df,menu,nt):
