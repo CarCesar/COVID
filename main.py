@@ -20,7 +20,7 @@ st.set_page_config(page_title='COVID-WORLD',
 
 ### Dados
 @st.cache
-def dados():
+def dadosInteiros():
     df=pd.read_csv('https://covid.ourworldindata.org/data/owid-covid-data.csv')
     #df = pd.read_csv('C:/Users/carlo/Desktop/Visualização/COVID/data.csv')
     ISO = pd.read_csv('https://raw.githubusercontent.com/stefangabos/world_countries/master/data/en/countries.csv')
@@ -31,7 +31,17 @@ def dados():
     df2=df.merge(ISO[['id','alpha3','flag']].rename(columns={'alpha3':'iso_code'}),how='left',on='iso_code')
     return df2
 
-
+@st.cache
+def dados():
+    df=pd.read_csv('https://covid.ourworldindata.org/data/owid-covid-data.csv')
+    #df = pd.read_csv('C:/Users/carlo/Desktop/Visualização/COVID/data.csv')
+    ISO = pd.read_csv('https://raw.githubusercontent.com/stefangabos/world_countries/master/data/en/countries.csv')
+    #ISO = pd.read_csv('C:/Users/carlo/Desktop/Visualização/COVID/ISO.csv')
+    ISO['alpha3']=[a.upper() for a in ISO['alpha3']]
+    #ISO['flag']=['https://raw.githubusercontent.com/hampusborgos/country-flags/main/png100px/'+a+'.png' for a in ISO['alpha2']]
+    ISO['flag']=['https://raw.githubusercontent.com/csmoore/country-flag-icons/master/country-flags-4x3-png/'+a+'.png' for a in ISO['alpha2']]
+    df2=df.merge(ISO[['id','alpha3','flag']].rename(columns={'alpha3':'iso_code'}),how='inner',on='iso_code')
+    return df2
 
 # Primeiro ambiente ...
 l0c1,l0c2= st.columns([3,1])
@@ -222,12 +232,12 @@ if P1 == 'Vaccination':
     
 ####################### Mundo #######################################
 if P1=='Mundial':
-    df = dados()
+    df = dadosInteiros()
     #df1 = dados()
     df1 = df.query(f'date == "2021-12-09"') 
     df_cont = auxilio.tabela_group_continente(df)
     df_pais= auxilio.tabela_group_pais(df)
-    bc = mundial.bump_chart(df_cont,df1)
+    bc = mundial.bump_chart(df_cont)
     st.altair_chart(bc)
     
     
