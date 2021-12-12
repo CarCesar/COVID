@@ -232,13 +232,23 @@ if P1 == 'Vaccination':
     
 ####################### Mundo #######################################
 if P1=='Mundial':
+    st.markdown(' ')
+    mundial1,mundial2 = st.columns([1,2])
     df = dadosInteiros()
-    #df1 = dados()
     df1 = df.query(f'date == "2021-12-09"') 
     df_cont = auxilio.tabela_group_continente(df)
     df_pais= auxilio.tabela_group_pais(df)
-    bc = mundial.bump_chart(df_cont)
-    st.altair_chart(bc)
+    selectMundial = mundial1.selectbox('Data',['New Deaths','New Deaths by Pop','New Cases','New Cases by Pop'])
+    dicmunsel={'New Deaths':'new_deaths','New Deaths by Pop':'new_deaths_by_population','New Cases':'new_cases','New Cases by Pop':'new_cases_by_population'}
+    mundial1.markdown(' ')
+    cb=mundial.mapa_mundi(df1)
+    mundial1.altair_chart(cb)
+    if selectMundial in ['New Deaths by Pop','New Cases by Pop']:
+        mundial1.markdown('''<div id = 'tudo' style='font-family: "Courier", Courier, monospace;'>Frequency in a million people</div>''',unsafe_allow_html=True)
+    bc = mundial.bump_chart(df_cont,dicmunsel[selectMundial])
+    mundial2.altair_chart(bc)
+    
+    
     
     
     
