@@ -285,7 +285,7 @@ if P1=='The Vis':
             E <em>Total de Mortes</em> aonde a gente vê quão devastador foi a covid em tal lugar até determinado dia.</p>
     <h3 style='font-family: "Courier", Courier, monospace;'>Vacinação</h3>
     <p style='font-family: "Courier", Courier, monospace;'>
-        Aqui não seria possivel fazer uma analise relacionada aos vaicnados naquele dia, pois tinha vários dados faltantes. 
+        Aqui não seria possivel fazer uma analise relacionada aos vacinados naquele dia, pois tinha vários dados faltantes. 
         Porém diferente dos demais, o objetivo é que toda a população seja vacinada e além disso, seja totalmente vacinada.
         Portanto, perdemos a variavel tempo, porém ganhamos as variaveis <em>Vacinadas</em> e <em>Totalmente Vacinadas</em>, e cada uma delas ainda pode ser a quantidade total ou um porcentagem da população total.
     </p>
@@ -301,8 +301,8 @@ if P1=='The Vis':
     
     """,unsafe_allow_html=True)
     v1,v2 = st.columns(2)
-    v1.markdown('''<p style='font-family: "FreeMono", monospace;'>Para começar, peguei os dados de casos, fiz os seletores de 'New Cases' ou 'Total Cases',  de Continente e de Data. Em seguida fiz um mapa onde representei os dados no espaço, do lado coloquei uma lista dos paises que tinham mais insidentes entre os dados selecionados. Quando selecionado 'New Cases', o número grande indica os novos casos naquele dia, e o númerozinho representa a taxa de crescimento, quando selecionado 'Total Cases', o número grande indica o total de casos registrados até aquele dia e número pequeno os novos casos daquele dia.
-    Em seguida fiz um scater plot em que o x é o Total de Casos (log) e o y é o Total de Mortes (log), em ambos os casos preferi a escala log. O tamanho dos circulos representa a quantidade de Novos ou Total de Casos a depender de qual foi escolhido, do lado e interligado está um bar plot em no y estão os paises, enquanto no x está Total ou Novos Casos a depender da escolha, porém aqui, os dados estão em escala log. Ao escolher uma barra ou um circulo, os dados relacionados irão acendere definir varias informações.
+    v1.markdown('''<p style='font-family: "FreeMono", monospace;'>Para começar, peguei os dados de casos, fiz os seletores de 'New Cases' ou 'Total Cases',  de Continente e de Data. Em seguida fiz um mapa onde representei os dados no espaço, do lado coloquei uma lista dos paises que tinham mais incidentes entre os dados selecionados. Quando selecionado 'New Cases', o número grande indica os novos casos naquele dia, e o numerozinho representa a taxa de crescimento, quando selecionado 'Total Cases', o número grande indica o total de casos registrados até aquele dia e número pequeno os novos casos daquele dia.
+    Em seguida fiz um scater plot em que o x é o Total de Casos (log) e o y é o Total de Mortes (log), em ambos os casos preferi a escala log. O tamanho dos circulos representa a quantidade de Novos ou Total de Casos a depender de qual foi escolhido, do lado e interligado está um bar plot em no y estão os paises, enquanto no x está Total ou Novos Casos a depender da escolha, porém aqui, os dados estão em escala log. Ao escolher uma barra ou um círculo, os dados relacionados irão acender e definir varias informações.
     Todo o processo feito aqui foi repetido para Mortes com algumas edições nas cores.
     </p>
     ''',unsafe_allow_html=True)
@@ -310,8 +310,8 @@ if P1=='The Vis':
     v3,v4=st.columns(2)
     v3.image('vac.png')
     v4.markdown("""<p style='font-family:"Courier", monospace;'>
-    A ideia para Vacinação era fazer a mesma coisa que fiz para casos e para mortes, porém ao analisar os dados vi que não eram todos os dias que eram lançado os dados de todos os paises. Daria para fazer, mas eu teria que manipular os dados e não sei o trabalho mais facil do mundo. Além disso, toda a população de todo pais é para ser vacinada, além disso, totalmente vacinada. Então peguei os ultimos dados lançados de cada pais e fiz um mapa e uma lista muito parecidos, na lista aparecia os números de vacinados e a porcentagem da população que já se imunizou.
-    Na hora de fazer os scater plot coloquei no eixo x a data do ultimo lançamento e no y os paises, o tamanho dos circulos é a quantia selecionada que também está representada no eixo x no gráfico de barras (se escolheu ver a quantia Total ele estará em log), no eixo y do grafico de barras estão os paises. Novamente, se selecionar um circulo ou uma barra dados do pais selecionado irão aparecer pela tela.
+    A ideia para Vacinação era fazer a mesma coisa que fiz para casos e para mortes, porém ao analisar os dados vi que não eram todos os dias que eram lançados os dados de todos os paises. Daria para fazer, mas eu teria que manipular os dados e não seria o trabalho mais facil do mundo. Além disso, toda a população de todo pais é para ser vacinada, além disso, totalmente vacinada. Então peguei os últimos dados lançados de cada país e fiz um mapa e uma lista muito parecidos com os anteriores, na lista aparecia os números de vacinados e a porcentagem da população que já se imunizou.
+    Na hora de fazer os scater plot coloquei no eixo x a data do ultimo lançamento e no y os paises, o tamanho dos circulos é a quantia selecionada que também está representada no eixo x no gráfico de barras (se escolheu ver a quantia Total ele estará em log), no eixo y do grafico de barras estão os paises. Novamente, se selecionar um circulo ou uma barra, dados do pais selecionado irão aparecer pela tela.
    </p>
     """,unsafe_allow_html=True)
     
@@ -322,26 +322,26 @@ if P1=='The Vis':
    
    <h3 style='font-family: "Courier", Courier, monospace;'>Epicentro</h3>
    <p style='font-family:"Courier", monospace;'>
-    Meio na dúvida do que fazer, pensei que seria legal algum grafico que permitisse uma analise temporal, nesse caso o melhor contexto que achei, além de ser um assunto bem amplo, é 'Qual o epicentro da pandemia?', sabemos que esse epicentro é fluido, hoje é um lugar, hoje pode ser outro totalmente diferente, então tentei resolver esse problema com a visualização. Para começar, me perguntei como vou definir que o continente epicentro da pandemia?  
+    Meio na dúvida do que fazer, pensei que seria legal algum grafico que permitisse uma analise temporal, nesse caso o melhor contexto que achei, além de ser um assunto bem amplo, é 'Qual o epicentro da pandemia?', sabemos que esse epicentro é fluido, hoje é um lugar, amanhã pode ser outro totalmente diferente, então tentei resolver esse problema com a visualização. 'Para começar, me perguntei como vou definir que o continente epicentro da pandemia?' 
    </p>
    
    <em style='font-family:"Courier", monospace;'>
-    Será que seria o continente que tem mais casos em tal periodo de tempo?
+    Seria o continente que tem mais casos em tal periodo de tempo?
    </em>
    <br>
    <br>
    <em style='font-family:"Courier", monospace;'>
-     Ou será o pais que tem mais mortes?
+     Ou será o continente que tem mais mortes em tal periodo?
    </em>
    <br>
    <br>
    <em style='font-family:"Courier", monospace;'>
-    Será que é certo perguntar pelo mais, ou seria melhor perguntar pelo que tem mais incidencias dadas as populações?
+    Será que é certo perguntar pelo "mais", ou seria melhor perguntar pelo que tem mais incidencias dadas as populações?
    </em>
    <br>
    <br>
    <p style='font-family:"Courier", monospace;'>
-    É... Achei todos os contextos validos. Então resolvi fazer um seletor onde o usuario pode selecionar. Falando da visualização propriamente dita, fiz um 'Bump Chart' e abaixo dele um 'Heapmap' com uma legenda que permite a seleção de um continente ao lado, eu queria utilizar o mapa como a legenda ligada que seleciona os continentes, porém após alguma pesquisa vi que ainda não é possivel, porém coloquei o mapa ao lado para dar um charme e ser uma legenda auxiliar.
+    É... Achei todos os contextos válidos. Então resolvi fazer um seletor onde o usuário pode selecionar. Falando da visualização propriamente dita, fiz um 'Bump Chart' e abaixo dele um 'Heapmap' com uma legenda que permite a seleção de um continente ao lado, eu queria utilizar o mapa como a legenda ligada que seleciona os continentes, porém após alguma pesquisa vi que ainda não é possivel, porém coloquei o mapa ao lado para dar um charme e ser uma legenda auxiliar.
     Ao selecionar um continente, as linhas dos outros continentes ficam mais claras evidenciando o continente escolhido, no heapmap os outros continentes somem e o grafico de barras que está no fundo fca mais visivel (Não sei se sobrecarrega a visualização, porém achei legal as cores em um primeiro plano e as linhas evidenciando as quantidades indicadas pelas cores no heapmap). A visualização foi essa:
    </p>
    
@@ -358,7 +358,7 @@ if P1=='The Vis':
     st.markdown("""   
    <h3 style='font-family: "Courier", Courier, monospace;'>Vacinas</h3>
    <p style='font-family:"Courier", monospace;'>
-    É muitas vezes ao vermos as notícias, tem algo relacionado com a OMS pedindo que os paises ricos tambem se solidarizem com os países mais pobres, principalmente os africanos. Então resolvi fazer essa visualização para ver como estão os paises de cada continente na vacinação. Para tal fiz um heatmap com sobreposição de um scater plot. Para finalizar coloquei as legendas aos lados e uma marquinha para cada pais na região do seu continente. Coloquei a interatividade ao clicar nas legendas do mapa.
+    É muitas vezes ao vermos as notícias, tem algo relacionado com a OMS pedindo que os paises ricos tambem se solidarizem com os países mais pobres, principalmente os africanos. Então resolvi fazer essa visualização para ver como estão os paises de cada continente na vacinação. Para tal, fiz um heatmap com sobreposição de um scater plot. Para finalizar coloquei as legendas aos lados e uma marquinha para cada pais na região do seu continente. Coloquei a interatividade ao clicar nas legendas do mapa.
    </p>
    
    <style>
