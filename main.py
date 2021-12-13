@@ -48,9 +48,9 @@ def dados():
 l0c1,l0c2= st.columns([3,1])
 l0c1.markdown('# COVID')
 P1 = l0c2.selectbox("",
-     ('Boletim', 'Mundial','Vaccine','The Vis'))
+     ('Info', 'Epicenter','Vaccine','The Vis'))
 
-if P1 == 'Boletim':
+if P1 == 'Info':
     b0, b, l1c1, b ,l1c2, l1c3,b= st.columns([2,2,5,1,1.5,3,1])
     P2 = b0.selectbox('TYPE:',['Cases', 'Deaths', 'Vaccination'])
     ### Várias faces ...
@@ -64,11 +64,11 @@ if P1 == 'Boletim':
 
         NT = b0.selectbox("Total or New",('New cases','Total cases'))
 
-        menu = b0.selectbox("Continente",
+        menu = b0.selectbox("Continent",
         ("Africa", "Europe", "South America", 'North America', "Asia", "Oceania"),
                                )
 
-        d = b0.date_input('Dia',value=datetime.date(2021, 12, 1),
+        d = b0.date_input('Date',value=datetime.date(2021, 12, 1),
                                   min_value= datetime.date(2020, 1, 1),
                                   max_value= datetime.date(2021, 12, 10) )
 
@@ -121,11 +121,11 @@ if P1 == 'Boletim':
         #b0, b, f1l1c1, b ,f1l1c2, f1l1c3,b= st.columns([2,2,5,1,1.5,3,1])
         NT = b0.selectbox("Total or New",('New deaths','Total deaths'))
 
-        menu = b0.selectbox("Continente",
+        menu = b0.selectbox("Continent",
         ("Africa", "Europe", "South America", 'North America', "Asia", "Oceania"),
                                )
 
-        d = b0.date_input('Dia',value=datetime.date(2021, 12, 1),
+        d = b0.date_input('Date',value=datetime.date(2021, 12, 1),
                                   min_value= datetime.date(2020, 1, 1),
                                   max_value= datetime.date(2021, 12, 10) )
 
@@ -177,7 +177,7 @@ if P1 == 'Boletim':
         NT1 = b0.selectbox("Vaccinated or Fully",('People Vaccinated','People Fully Vacinated'))
         NT2 = b0.selectbox("Total or Per Hundred",('Total','Per Hundred'))
 
-        menu = b0.selectbox("Continente",
+        menu = b0.selectbox("Continent",
         ("Africa", "Europe", "South America", 'North America', "Asia", "Oceania"),
                                )
 
@@ -233,7 +233,7 @@ if P1 == 'Boletim':
         f2l2c1.altair_chart(g1)
     
 ####################### Mundo #######################################
-if P1=='Mundial':
+if P1=='Epicenter':
     st.markdown(' ')
     mundial1,mundial2 = st.columns([1,2])
     df = dadosInteiros()

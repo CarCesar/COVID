@@ -3,6 +3,8 @@ from vega_datasets import data
 
 import auxilio
 
+cor=['#13A891','#F09001','#9653F5','#84F53B','#F52232','#FFE92F']
+#['#BD0107','#2C8F1A','#BD0F5F','#3D6AF0','#25F56F','#F09001']
 def bump_chart(source,col):
     click = alt.selection_multi(fields=['location'])
     
@@ -10,7 +12,7 @@ def bump_chart(source,col):
     x = alt.X("date:O", timeUnit="yearmonth",axis=alt.Axis(labelAngle=-90,grid=True,domain=False,title=None,ticks=False,labels=False
                                                            ,labelFont='Courier',labelFontSize=9)),
     y=alt.Y("rank:O",axis = alt.Axis(domain=False,grid = True,ticks=False)),
-    color=alt.condition(click,alt.Color("location:N",legend=None),alt.value('lightgray')),
+    color=alt.condition(click,alt.Color("location:N",legend=None,scale=alt.Scale(range=cor)),alt.value('lightgray')),
     tooltip=[alt.Tooltip(f'{col}:Q'),alt.Tooltip('location:N'),'rank:O'],
     opacity = alt.condition(click,alt.value(1),alt.value(0.3)),
     ).transform_window(
@@ -27,9 +29,10 @@ def bump_chart(source,col):
     x = alt.X("date:O", timeUnit="yearmonth", title="date",axis=alt.Axis(orient='top',grid=True,domain=False,title=None,ticks=False,),
               ),
     y=alt.Y(f"{col}:Q",axis = alt.Axis(domain=False,grid =True,gridOpacity=0.5,ticks=False,orient='right',titleFont='Courier',
-                                           title=auxilio.titulo(col)),),
+                                           title=auxilio.titulo(col))),
     #color = alt.Color("location:N",legend=None),
-    color=alt.condition(click,alt.Color("location:N",legend=None),alt.value('lightgray')),
+    color=alt.condition(click,alt.Color("location:N",legend=None,
+                                        scale=alt.Scale(range=cor)),alt.value('lightgray')),
     opacity = alt.condition(click,alt.value(.9),alt.value(0.3)),
 ).transform_window(
     rank="rank()",
@@ -61,7 +64,9 @@ def bump_chart(source,col):
     legenda = alt.Chart(source).mark_rect(stroke='bisque',cornerRadius=10,x=20).encode(y=alt.Y('location',axis=alt.Axis(domain = False,ticks=False,
                                                                                                                         orient='right',labelFont='Courier',
                                                                                                                         title=None)),
-                                                                                       color='location').properties(
+                                                                    color=alt.condition(click,alt.Color('location:N',
+                                                                                                        scale=alt.Scale(range=cor)),alt.value('lightgray')
+                                                                                                         )).properties(
     width=20,
     height=150,
 ).add_selection(click)
@@ -86,7 +91,7 @@ def mapa_mundi(df1):
              ).mark_geoshape(stroke="black", strokeWidth=0.15).transform_lookup(
         lookup = 'id',from_=alt.LookupData(data=df1, key='id', fields=['new_cases','location','continent'])
     ).encode(
-        color = alt.Color('continent:N',scale=alt.Scale(domain=['Africa','Asia',"Europe","North America",'Oceania','South America']),legend=None),)
+        color = alt.Color('continent:N',scale=alt.Scale(domain=['Africa','Asia',"Europe","North America",'Oceania','South America'],range=cor),legend=None),)
 
 
     mapa = (mar+linhas+fundo+mapa).properties(width=435, height=250).project(type='naturalEarth1').configure_view(strokeWidth=0)

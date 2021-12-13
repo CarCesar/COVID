@@ -2,6 +2,8 @@ import altair as alt
 
 import auxilio
 
+cor=['#13A891','#F09001','#9653F5','#34A52B','#F52232','#F5C129']
+
 def vaq1(df):
     # Seletor de continente
     click = alt.selection_multi(fields=['continent'])
@@ -22,10 +24,10 @@ def vaq1(df):
                                                                                                                      ).transform_filter(click)
     
     # scater plot 
-    point = danone.mark_circle().encode(
+    point = danone.mark_circle(stroke='black',strokeWidth=0.7).encode(
         alt.X('people_vaccinated_per_hundred', scale=xscale,axis=alt.Axis(grid=True,domain=False,title=None,labels=False,ticks=False)),
         alt.Y('people_fully_vaccinated_per_hundred', scale=yscale,axis=alt.Axis(grid=True,domain=False,title=None,labels=False,ticks=False)),
-        color=alt.Color('continent',legend=None),
+        color=alt.Color('continent',legend=None,scale=alt.Scale(range=cor)),#scheme='dark2')),
         opacity=alt.condition(click,alt.value(1),alt.value(.1)),
         size = alt.Size('people_fully_vaccinated',scale=alt.Scale(type='log',
                                                                   range=(1,175)),legend=alt.Legend(orient='right',title='Fully Vaccinated - log',
@@ -46,7 +48,9 @@ def vaq1(df):
                                                                               orient='left',labelFont='Courier',
                                                                               title=None)),
                                                                               color=alt.condition(click,
-                                                                                                  alt.Color('continent:N',legend=None),alt.value('lightgray'))
+                                                                                                  alt.Color('continent:N',legend=None,
+                                                                                                            scale=alt.Scale(range=cor)),#scheme='dark2')),
+                                                                                                  alt.value('lightgray'))
                                                                               ).properties(width=400,height=100,).add_selection(click)
     
     l2 = danone.mark_rect().encode(x=alt.X('continent:N',scale = alt.Scale(),
@@ -54,7 +58,9 @@ def vaq1(df):
                                                                               orient='bottom',labelFont='Courier',
                                                                               title=None)),
                                                                               color=alt.condition(click,
-                                                                                                  alt.Color('continent:N',legend=None),alt.value('lightgray'))
+                                                                                                  alt.Color('continent:N',legend=None,
+                                                                                                            scale=alt.Scale(range=cor)),#scheme='dark2')),
+                                                                                                  alt.value('lightgray'))
                                                                               ).properties(width=100,height=400,).add_selection(click)
     
     # marquinhas
@@ -63,7 +69,7 @@ def vaq1(df):
         alt.Y('continent', title='', axis=alt.Axis(labels=True, domain=False, ticks=False,title=None)),
     )
     
-    y_ticks = danone.mark_tick(color = 'lightgray').encode(
+    y_ticks = danone.mark_tick(color = 'lightgrey').encode(
         alt.X('continent', title='', axis=alt.Axis(labels=True, domain=False, ticks=False,title=None)),
         alt.Y('people_fully_vaccinated_per_hundred', axis=alt.Axis(labels=False, domain=False, ticks=False,title=None),scale=yscale),
     )
