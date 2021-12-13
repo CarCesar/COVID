@@ -36,7 +36,7 @@ def vaq1(df):
     point1 = point.encode(opacity=alt.value(0),tooltip=['location',
                                                         alt.Tooltip('people_vaccinated_per_hundred',title='Vaccinated %'),
                                                         alt.Tooltip('people_fully_vaccinated_per_hundred',title='FULL vac. %'),
-                                                        alt.Tooltip('people_fully_vaccinated',title='FULL vac')]).transform_filter(click)
+                                                        alt.Tooltip('people_fully_vaccinated',title='FULL vac'),'date']).transform_filter(click)
     # scater + tooltips
     points=(point+point1).add_selection(click)
     

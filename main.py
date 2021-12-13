@@ -290,7 +290,7 @@ if P1=='The Vis':
         Portanto, perdemos a variavel tempo, porém ganhamos as variaveis <em>Vacinadas</em> e <em>Totalmente Vacinadas</em>, e cada uma delas ainda pode ser a quantidade total ou um porcentagem da população total.
     </p>
     <h2 style='font-family: "Courier", Courier, monospace;'>Execução</h2>
-    
+    <h3 style='font-family: "Courier", Courier, monospace;'>Info</h3>
     </div>
 
     <style>
@@ -301,20 +301,122 @@ if P1=='The Vis':
     
     """,unsafe_allow_html=True)
     v1,v2 = st.columns(2)
-    v1.markdown('''<p style='font-family: "FreeMono", monospace;'>Para casos e mortes usei um quadro bem parecido. Onde alinhei uma primeira coluna para selecionar o dado que deseja ver, o continete e o dia.
-    Sendo a segunda coluna um mapa do continente naquele dia com o dado selecionado e a terceira coluna uma lista com os 4 paises daquele continente com maiores indices do dado selecionado. 
-    Na segunda linha é uma visualização da quantidade,  Onde o scater plot tem no tamanho de cada circulo a quantidade, porém na barra também tem está quantidade, só que em escala log. Acredito que juntando essas informações com os valores mostrado na tela quando escolhemos um barra seja compreensivel.
+    v1.markdown('''<p style='font-family: "FreeMono", monospace;'>Para começar, peguei os dados de casos, fiz os seletores de 'New Cases' ou 'Total Cases',  de Continente e de Data. Em seguida fiz um mapa onde representei os dados no espaço, do lado coloquei uma lista dos paises que tinham mais insidentes entre os dados selecionados. Quando selecionado 'New Cases', o número grande indica os novos casos naquele dia, e o númerozinho representa a taxa de crescimento, quando selecionado 'Total Cases', o número grande indica o total de casos registrados até aquele dia e número pequeno os novos casos daquele dia.
+    Em seguida fiz um scater plot em que o x é o Total de Casos (log) e o y é o Total de Mortes (log), em ambos os casos preferi a escala log. O tamanho dos circulos representa a quantidade de Novos ou Total de Casos a depender de qual foi escolhido, do lado e interligado está um bar plot em no y estão os paises, enquanto no x está Total ou Novos Casos a depender da escolha, porém aqui, os dados estão em escala log. Ao escolher uma barra ou um circulo, os dados relacionados irão acendere definir varias informações.
+    Todo o processo feito aqui foi repetido para Mortes com algumas edições nas cores.
     </p>
     ''',unsafe_allow_html=True)
     v2.image('casos.png')
     v3,v4=st.columns(2)
     v3.image('vac.png')
-    v4.markdown("""<p style='font-family:"Courier", monospace;'>Contudo a visualização para Vacinação foi bem parecida, porém na hora de fazer a segunda coluna, troquei os valores para fazer o scater plot e coloquei no Y o proprio Pais com tambem esta no bar plot, e no X eu coloquei a data, pois paises lançam dados em dias diferentes e não são todos os dias. 
-        Então peguei os dados do ultimo dia que cada pais disponibilizou os dados.</p>
+    v4.markdown("""<p style='font-family:"Courier", monospace;'>
+    A ideia para Vacinação era fazer a mesma coisa que fiz para casos e para mortes, porém ao analisar os dados vi que não eram todos os dias que eram lançado os dados de todos os paises. Daria para fazer, mas eu teria que manipular os dados e não sei o trabalho mais facil do mundo. Além disso, toda a população de todo pais é para ser vacinada, além disso, totalmente vacinada. Então peguei os ultimos dados lançados de cada pais e fiz um mapa e uma lista muito parecidos, na lista aparecia os números de vacinados e a porcentagem da população que já se imunizou.
+    Na hora de fazer os scater plot coloquei no eixo x a data do ultimo lançamento e no y os paises, o tamanho dos circulos é a quantia selecionada que também está representada no eixo x no gráfico de barras (se escolheu ver a quantia Total ele estará em log), no eixo y do grafico de barras estão os paises. Novamente, se selecionar um circulo ou uma barra dados do pais selecionado irão aparecer pela tela.
+   </p>
     """,unsafe_allow_html=True)
     
     
+    st.markdown("""<p style='font-family:"Courier", monospace;'>
+    Após ter feito isso, achei que estava faltando algo mais relacionado com os dados temporais...
+   </p>
+   
+   <h3 style='font-family: "Courier", Courier, monospace;'>Epicentro</h3>
+   <p style='font-family:"Courier", monospace;'>
+    Meio na dúvida do que fazer, pensei que seria legal algum grafico que permitisse uma analise temporal, nesse caso o melhor contexto que achei, além de ser um assunto bem amplo, é 'Qual o epicentro da pandemia?', sabemos que esse epicentro é fluido, hoje é um lugar, hoje pode ser outro totalmente diferente, então tentei resolver esse problema com a visualização. Para começar, me perguntei como vou definir que o continente epicentro da pandemia?  
+   </p>
+   
+   <em style='font-family:"Courier", monospace;'>
+    Será que seria o continente que tem mais casos em tal periodo de tempo?
+   </em>
+   <br>
+   <br>
+   <em style='font-family:"Courier", monospace;'>
+     Ou será o pais que tem mais mortes?
+   </em>
+   <br>
+   <br>
+   <em style='font-family:"Courier", monospace;'>
+    Será que é certo perguntar pelo mais, ou seria melhor perguntar pelo que tem mais incidencias dadas as populações?
+   </em>
+   <br>
+   <br>
+   <p style='font-family:"Courier", monospace;'>
+    É... Achei todos os contextos validos. Então resolvi fazer um seletor onde o usuario pode selecionar. Falando da visualização propriamente dita, fiz um 'Bump Chart' e abaixo dele um 'Heapmap' com uma legenda que permite a seleção de um continente ao lado, eu queria utilizar o mapa como a legenda ligada que seleciona os continentes, porém após alguma pesquisa vi que ainda não é possivel, porém coloquei o mapa ao lado para dar um charme e ser uma legenda auxiliar.
+    Ao selecionar um continente, as linhas dos outros continentes ficam mais claras evidenciando o continente escolhido, no heapmap os outros continentes somem e o grafico de barras que está no fundo fca mais visivel (Não sei se sobrecarrega a visualização, porém achei legal as cores em um primeiro plano e as linhas evidenciando as quantidades indicadas pelas cores no heapmap). A visualização foi essa:
+   </p>
+   
+   <style>
+        h2{color:#AAAAFF}
+        em{color:#CCCCFF}
+        h3{color:#BBBBFF}
+    </style>
+    """,unsafe_allow_html=True)
     
+    b,v5,b=st.columns([1,2,1])
+    v5.image('epi.png')
+    
+    st.markdown("""   
+   <h3 style='font-family: "Courier", Courier, monospace;'>Vacinas</h3>
+   <p style='font-family:"Courier", monospace;'>
+    É muitas vezes ao vermos as notícias, tem algo relacionado com a OMS pedindo que os paises ricos tambem se solidarizem com os países mais pobres, principalmente os africanos. Então resolvi fazer essa visualização para ver como estão os paises de cada continente na vacinação. Para tal fiz um heatmap com sobreposição de um scater plot. Para finalizar coloquei as legendas aos lados e uma marquinha para cada pais na região do seu continente. Coloquei a interatividade ao clicar nas legendas do mapa.
+   </p>
+   
+   <style>
+        h2{color:#AAAAFF}
+        em{color:#CCCCFF}
+        h3{color:#BBBBFF}
+    </style>
+    """,unsafe_allow_html=True)
+    
+    b,v6,b=st.columns([1,2,1])
+    v6.image('hep.png')
+    
+    v7,b,v8,v9=st.columns([20,1,10,8])
+    
+    v7.markdown("""   
+   <h3 style='font-family: "Courier", Courier, monospace;'>Bibliografia</h3>
+   <p style='font-family:"Courier", monospace;'>
+    Para fazer esse trabalho eu utilizei as bibliotecas Streamlit e Altair de Python. E consegui os dados utilizados nesse trabalho em:
+   </p>
+   <a style='font-family:"Courier", monospace;' href='https://covid.ourworldindata.org/data/owid-covid-data.csv'>
+    Our World in Data
+   </a>
+   <br>
+   <a style='font-family:"Courier", monospace;' href='https://github.com/stefangabos/world_countries/blob/master/data/en/countries.csv'>
+    ISO CODE
+   </a>
+   <br>
+   <a style='font-family:"Courier", monospace;' href='https://github.com/csmoore/country-flag-icons/'>
+    Bandeiras
+   </a>
+   
+   <style>
+        h2{color:#AAAAFF}
+        em{color:#CCCCFF}
+        h3{color:#BBBBFF}
+    </style>
+    """,unsafe_allow_html=True)
+    
+    v8.markdown("""   
+   <h3 style='font-family: "Courier", Courier, monospace;'>Quem Fez?</h3>
+   <p style='font-family:"Courier", monospace;'>
+    Carlos César Fonseca é estudante do 4º periodo(2021-2) de Ciência de Dados da Emap - FGV.
+   </p>
+   <p style='font-family:"Courier", monospace;'>
+    As vezes perdido, as vezes insano, mas no fundo com todo mundo é...
+   </p>
+   <p style='font-family:"Courier", monospace;'>
+    A pessoa da foto...
+   </p>
+   
+   <style>
+        h2{color:#AAAAFF}
+        em{color:#CCCCFF}
+        h3{color:#BBBBFF}
+    </style>
+    """,unsafe_allow_html=True)
+    
+    v9.image('carl.jpeg')
 st.markdown('''<style>
                     body{font-family: "Courier", Courier, monospace;}
                     [data-baseweb]{font-family: "Courier", Courier, monospace;}
