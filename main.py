@@ -355,8 +355,8 @@ if P1=='The Vis':
    <br>
    <br>
    <p style='font-family:"Courier", monospace;'>
-    É... Achei todos os contextos válidos. Então resolvi fazer um seletor onde o usuário pode selecionar. Falando da visualização propriamente dita, fiz um 'Bump Chart' e abaixo dele um 'Heapmap' com uma legenda que permite a seleção de um continente ao lado, eu queria utilizar o mapa como a legenda ligada que seleciona os continentes, porém após alguma pesquisa vi que ainda não é possivel, porém coloquei o mapa ao lado para dar um charme e ser uma legenda auxiliar.
-    Ao selecionar um continente, as linhas dos outros continentes ficam mais claras evidenciando o continente escolhido, no heatmap os outros continentes somem e o grafico de barras que está no fundo fca mais visivel (Não sei se sobrecarrega a visualização, porém achei legal as cores em um primeiro plano e as linhas evidenciando as quantidades indicadas pelas cores no heapmat). A visualização foi essa:
+    É... Achei todos os contextos válidos. Então resolvi fazer um seletor onde o usuário pode selecionar. Falando da visualização propriamente dita, fiz um 'Bump Chart' e abaixo dele um 'Heatmap' com uma legenda que permite a seleção de um continente ao lado, eu queria utilizar o mapa como a legenda ligada que seleciona os continentes, porém após alguma pesquisa vi que ainda não é possivel, porém coloquei o mapa ao lado para dar um charme e ser uma legenda auxiliar.
+    Ao selecionar um continente, as linhas dos outros continentes ficam mais claras evidenciando o continente escolhido, no heatmap os outros continentes somem e o grafico de barras que está no fundo fca mais visivel (Não sei se sobrecarrega a visualização, porém achei legal as cores em um primeiro plano e as linhas evidenciando as quantidades indicadas pelas cores no heatmap). A visualização foi essa:
    </p>
    
    <style>
