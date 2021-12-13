@@ -270,15 +270,15 @@ if P1=='The Vis':
     st.markdown("""
     <div id = 'tudo' style='font-family: "Courier", Courier, monospace;'>
     <h2 id = 'h1' style='font-family: "Courier", Courier, monospace;'>O trabalho</h2>
-    <div class = 'tr' style='font-family: "Courier", Courier, monospace;'>O trabalho foi fazer uma visualização dado os assuntos vistos nas aulas de Visualização da Informação do Mestrado em Modelagem Matematica da EMAP - FGV, com a professora Asla.</div>
+    <div class = 'tr' style='font-family: "Courier", Courier, monospace;'>Este é meu trabalho  de Visualização da Informação do Mestrado em Modelagem Matematica da EMAP - FGV, com a professora Asla.</div>
         
     <h2 style='font-family: "Courier", Courier, monospace;'>A ideia</h2>
-    <p style='font-family: "Courier", Courier, monospace;'>Minha ideia a principio foi pegar dados que tivem dados temporais e espaciais pois eu queria muito utilizar mapa. Portanto, depois de algumas pesquisas resolvi pegar os dados de COVID pelo mundo.
+    <p style='font-family: "Courier", Courier, monospace;'>Minha ideia a principio foi pegar dados que tivessem dados temporais e espaciais pois eu queria muito utilizar mapa. Portanto, depois de algumas pesquisas resolvi pegar os dados de COVID pelo mundo.
     Depois de estudar um pouco sobre os dados cheguei a conclusão que teria 3 grandes grupos importantes <em>Casos</em>, <em>Mortes</em> e <em>Vacinação</em>.
     </p>
 
     <h3 style='font-family: "Courier", Courier, monospace;'>Casos</h3>
-    <p style='font-family: "Courier", Courier, monospace;'>Dentro de casos teve 2 subgrupos que achei legal para fazer analise,<em>Novos Casos</em>, aonde a gente nem um nivel de como está a covid em determinado local hoje, ou em tal dia. 
+    <p style='font-family: "Courier", Courier, monospace;'>Dentro de casos teve 2 subgrupos que achei legal para fazer analise,<em>Novos Casos</em>, aonde a gente tem um nivel de como está a covid em determinado local em tal dia. 
         E <em>Total de Casos</em> aonde a gente vê como foi a covid em tal lugar até determinado dia.</p>
     <h3 style='font-family: "Courier", Courier, monospace;'>Mortes</h3>
     <p style='font-family: "Courier", Courier, monospace;'>Em mortes, novamente, foram 2 subgrupos que achei legal para fazer analise,<em>Novas Mortes</em>, em que a gente tem uma ideia de como a covid esta ceifando vidas em determinado local hoje, ou em tal dia. 
