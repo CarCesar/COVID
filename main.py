@@ -45,8 +45,8 @@ def dados():
     return df2
 
 # Primeiro ambiente ...
-l0c1,l0c2= st.columns([3,1])
-l0c1.markdown('# COVID')
+l0c1,hrEscrever,l0c2= st.columns([1,3,1])
+#l0c1.markdown('# COVID')
 P1 = l0c2.selectbox("",
      ('Info', 'Epicenter','Vaccine','The Vis'))
 
@@ -81,7 +81,7 @@ if P1 == 'Info':
         df = dados()
         df1 = auxilio.clasifica_df(df,menu,d,nt)
 
-
+        hrEscrever.markdown(f'## {NT} - {menu}')
 
         # Mapa
         m = mapa.mapa(df1,menu,nt)
@@ -128,7 +128,7 @@ if P1 == 'Info':
         d = b0.date_input('Date',value=datetime.date(2021, 12, 1),
                                   min_value= datetime.date(2020, 1, 1),
                                   max_value= datetime.date(2021, 12, 10) )
-
+        
         l0c1.markdown(' \n ')
 
         if NT =='New deaths': 
@@ -137,7 +137,8 @@ if P1 == 'Info':
             nt='total_deaths'
         df = dados()
         df1 = auxilio.clasifica_df(df,menu,d,nt)
-
+        
+        hrEscrever.markdown(f'## {NT} - {menu}')
 
         # Mapa
         m = mapa.mapa(df1,menu,nt,'yelloworangered')
@@ -180,7 +181,9 @@ if P1 == 'Info':
         menu = b0.selectbox("Continent",
         ("Africa", "Europe", "South America", 'North America', "Asia", "Oceania"),
                                )
-
+        
+        hrEscrever.markdown(f'## {NT1} - {menu}')
+        
         l0c1.markdown(' \n ')
 
         if NT1 =='People Vaccinated': 
@@ -234,6 +237,9 @@ if P1 == 'Info':
     
 ####################### Mundo #######################################
 if P1=='Epicenter':
+    
+    l0c1.markdown(f'# Epicenter')
+    
     st.markdown(' ')
     mundial1,mundial2 = st.columns([1,2])
     df = dadosInteiros()
@@ -254,6 +260,9 @@ if P1=='Epicenter':
      
 #################################################################################    
 if P1=='Vaccine':
+    
+    l0c1.markdown(f'# Vaccine')
+    
     df=dados()
     df=auxilio.tabela_extra(df)
     vac = vac.vaq1(df)
@@ -267,10 +276,15 @@ if P1=='Vaccine':
     
 ################################## Escrita ######################################
 if P1=='The Vis':
+    
+    l0c1.markdown(f'# The Vis')
+    
     st.markdown("""
     <div id = 'tudo' style='font-family: "Courier", Courier, monospace;'>
     <h2 id = 'h1' style='font-family: "Courier", Courier, monospace;'>O trabalho</h2>
-    <div class = 'tr' style='font-family: "Courier", Courier, monospace;'>Este é meu trabalho  de Visualização da Informação do Mestrado em Modelagem Matematica da EMAP - FGV, com a professora Asla.</div>
+    <div class = 'tr' style='font-family: "Courier", Courier, monospace;'>Este é meu trabalho  de Visualização da Informação do Mestrado em Modelagem Matematica da EMAP - FGV, com a professora Asla. Os códigos estão no <a style='font-family:"Courier", monospace;' href='https://github.com/CarCesar/COVID'>
+    meu GITHUB
+   </a></div>
         
     <h2 style='font-family: "Courier", Courier, monospace;'>A ideia</h2>
     <p style='font-family: "Courier", Courier, monospace;'>Minha ideia a principio foi pegar dados que tivessem dados temporais e espaciais pois eu queria muito utilizar mapa. Portanto, depois de algumas pesquisas resolvi pegar os dados de COVID pelo mundo.
@@ -420,4 +434,6 @@ if P1=='The Vis':
 st.markdown('''<style>
                     body{font-family: "Courier", Courier, monospace;}
                     [data-baseweb]{font-family: "Courier", Courier, monospace;}
+                    
+                    
                 </style>''',unsafe_allow_html=True)
