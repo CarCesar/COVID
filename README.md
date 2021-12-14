@@ -1,9 +1,20 @@
 <h2>O trabalho</h2>
 <p>Este é meu trabalho  de Visualização da Informação do Mestrado em Modelagem Matematica da EMAP - FGV, com a professora Asla. </p>
 
+## Mini Guia: 
 
- >  📝  [GitHub](https://github.com/CarCesar/COVID)  
- > 👁‍🗨 [Aplicação](https://share.streamlit.io/carcesar/covid/main/main.py)
+ -  📁 [GitHub](https://github.com/CarCesar/COVID)
+ 	-  📝 [main.py]( main.py)
+ 	-  Fazer o `Info`:
+ 		-  🗺 [mapa](mapa.py)
+ 		-  📊 [graficos](graficos.py)
+ 	- Fazer o `Epicenter`:
+ 		-  📈 [mundial](mundial.py)
+ 	- Fazer o `Vaccine`:
+ 		-  🧬 [vacinas](vac.py)
+ 	- Tratar os dados:
+ 	 	- 🧮 [auxilio](auxilio.py)
+ - 👁‍🗨 [Aplicação](https://share.streamlit.io/carcesar/covid/main/main.py)
 
 
 <h2>A ideia</h2>
