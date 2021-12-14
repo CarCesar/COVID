@@ -2,12 +2,16 @@ import altair as alt
 
 import auxilio
 
+
+# Case e Deaths
 def grafico1(df,col):
     t = len(df)
     if t<30:
         t=30
     
     click1 = alt.selection_multi(fields=['location'],empty='none')
+    
+    # scatter
     fig1 = alt.Chart(df).mark_circle(color = 'orange').encode(x=alt.X('total_cases:Q',scale=alt.Scale(type='log'),axis=alt.Axis(ticks = False,
                                                                                    labels = True , labelOpacity = 0.5, labelAngle=-90,labelFontSize=8,
                                                                                    domain = True,domainOpacity = 0.5, grid = False, titleFontSize=10,
@@ -26,27 +30,31 @@ def grafico1(df,col):
                                    tooltip = ['location',f'{col}']
                                                              ).properties(width=350, height=400).add_selection(click1)
     
+    # Total cases
     text1_1 = alt.Chart(df).mark_text(align='right',x=350,y=300,color = 'white',font='Courier',fontSize=15
                                    ).encode(text=alt.condition(click1,alt.Text('label:N'),alt.value('')),
                                            ).properties(width=350,height=400
                                                        ).transform_calculate(label='"TOTAL CASES:"')
     
+    # numero total cases
     text1_2 = alt.Chart(df).mark_text(align='right',x=345,y=325,color = 'white',font='Courier',fontSize=15
                                    ).encode(text=alt.condition(click1,alt.Text('total_cases:Q',format=',d'),alt.value('')),
                                            ).properties(width=700,height=400
                                                        )
     
+    #Total Deaths
     text1_3 = alt.Chart(df).mark_text(align='right',x=350,y=350,color = 'white',font='Courier',fontSize=15
                                    ).encode(text=alt.condition(click1,alt.Text('label:N'),alt.value('')),
                                            ).properties(width=350,height=400
                                                        ).transform_calculate(label='"TOTAL DEATHS:"')
     
+    #Numero de total de mortos
     text1_4 = alt.Chart(df).mark_text(align='right',x=345,y=375,color = 'white',font='Courier',fontSize=15
                                    ).encode(text=alt.condition(click1,alt.Text('total_deaths:Q',format=',d'),alt.value('')),
                                            ).properties(width=700,height=400
                                                        )
     
-    
+    # barras
     fig2 = alt.Chart(df).mark_bar().encode(x=alt.X(f'{col}',scale=alt.Scale(type='log'),axis=alt.Axis(
                                                                                    labels = True ,titleFontSize=13,
                                                                                    titleFont='Courier',titleOpacity=0.8,labelOpacity=0.8,
@@ -102,7 +110,7 @@ def grafico1(df,col):
 
 ###########################################################################################################################################################
 ###########################################################################################################################################################
-
+# Vacination
 def grafico2(df,col,nt,logaritmo):
     t = len(df)
     if t<30:

@@ -23,11 +23,10 @@ st.set_page_config(page_title='COVID-WORLD',
 @st.cache
 def dadosInteiros():
     df=pd.read_csv('https://covid.ourworldindata.org/data/owid-covid-data.csv')
-    #df = pd.read_csv('C:/Users/carlo/Desktop/Visualização/COVID/data.csv')
+    #df = pd.read_csv('.dados/data.csv')
     ISO = pd.read_csv('https://raw.githubusercontent.com/stefangabos/world_countries/master/data/en/countries.csv')
-    #ISO = pd.read_csv('C:/Users/carlo/Desktop/Visualização/COVID/ISO.csv')
+    #ISO = pd.read_csv('.dados/ISO.csv')
     ISO['alpha3']=[a.upper() for a in ISO['alpha3']]
-    #ISO['flag']=['https://raw.githubusercontent.com/hampusborgos/country-flags/main/png100px/'+a+'.png' for a in ISO['alpha2']]
     ISO['flag']=['https://raw.githubusercontent.com/csmoore/country-flag-icons/master/country-flags-4x3-png/'+a+'.png' for a in ISO['alpha2']]
     df2=df.merge(ISO[['id','alpha3','flag']].rename(columns={'alpha3':'iso_code'}),how='left',on='iso_code')
     return df2
@@ -35,18 +34,16 @@ def dadosInteiros():
 @st.cache
 def dados():
     df=pd.read_csv('https://covid.ourworldindata.org/data/owid-covid-data.csv')
-    #df = pd.read_csv('C:/Users/carlo/Desktop/Visualização/COVID/data.csv')
+    #df = pd.read_csv('.dados/data.csv')
     ISO = pd.read_csv('https://raw.githubusercontent.com/stefangabos/world_countries/master/data/en/countries.csv')
-    #ISO = pd.read_csv('C:/Users/carlo/Desktop/Visualização/COVID/ISO.csv')
+    #ISO = pd.read_csv('.dados/ISO.csv')
     ISO['alpha3']=[a.upper() for a in ISO['alpha3']]
-    #ISO['flag']=['https://raw.githubusercontent.com/hampusborgos/country-flags/main/png100px/'+a+'.png' for a in ISO['alpha2']]
     ISO['flag']=['https://raw.githubusercontent.com/csmoore/country-flag-icons/master/country-flags-4x3-png/'+a+'.png' for a in ISO['alpha2']]
     df2=df.merge(ISO[['id','alpha3','flag']].rename(columns={'alpha3':'iso_code'}),how='inner',on='iso_code')
     return df2
 
 # Primeiro ambiente ...
 l0c1,hrEscrever,l0c2= st.columns([1,3,1])
-#l0c1.markdown('# COVID')
 P1 = l0c2.selectbox("",
      ('Info', 'Epicenter','Vaccine','The Vis'))
 
@@ -80,7 +77,8 @@ if P1 == 'Info':
             nt='total_cases'
         df = dados()
         df1 = auxilio.clasifica_df(df,menu,d,nt)
-
+        
+        #Titulo
         hrEscrever.markdown(f'## {NT} - {menu}')
 
         # Mapa
@@ -129,6 +127,8 @@ if P1 == 'Info':
                                   min_value= datetime.date(2020, 1, 1),
                                   max_value= datetime.date(2021, 12, 10) )
         
+        #Titulo
+        hrEscrever.markdown(f'## {NT} - {menu}')
         l0c1.markdown(' \n ')
 
         if NT =='New deaths': 
@@ -138,8 +138,7 @@ if P1 == 'Info':
         df = dados()
         df1 = auxilio.clasifica_df(df,menu,d,nt)
         
-        hrEscrever.markdown(f'## {NT} - {menu}')
-
+        
         # Mapa
         m = mapa.mapa(df1,menu,nt,'yelloworangered')
         l1c1.altair_chart(m)
@@ -182,6 +181,7 @@ if P1 == 'Info':
         ("Africa", "Europe", "South America", 'North America', "Asia", "Oceania"),
                                )
         
+        #Titulo
         hrEscrever.markdown(f'## {NT1} - {menu}')
         
         l0c1.markdown(' \n ')
@@ -245,7 +245,6 @@ if P1=='Epicenter':
     df = dadosInteiros()
     df1 = df.query(f'date == "2021-12-09"') 
     df_cont = auxilio.tabela_group_continente(df)
-    df_pais= auxilio.tabela_group_pais(df)
     selectMundial = mundial1.selectbox('Data',['New Deaths','New Deaths by Pop','New Cases','New Cases by Pop'])
     dicmunsel={'New Deaths':'new_deaths','New Deaths by Pop':'new_deaths_by_population','New Cases':'new_cases','New Cases by Pop':'new_cases_by_population'}
     mundial1.markdown(' ')

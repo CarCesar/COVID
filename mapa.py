@@ -5,6 +5,7 @@ terra = alt.topo_feature(data.world_110m.url,'countries')
 
 dic = {'Africa':[-17, 0 ,0],'Asia':[-80, -20 ,0],'Europe':[-30, -60 ,0],'Oceania':[-150, 20 ,0],'North America':[100, -40 ,0],'South America':[60, 20 ,0]}
 
+
 sphere = alt.sphere()
 graticule = alt.graticule()
 mar = alt.Chart(sphere).mark_geoshape(fill='lightgrey')#lightblue

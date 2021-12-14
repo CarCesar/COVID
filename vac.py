@@ -1,7 +1,5 @@
 import altair as alt
 
-import auxilio
-
 cor=['#13A891','#F09001','#9653F5','#34A52B','#F52232','#F5C129']
 
 def vaq1(df):

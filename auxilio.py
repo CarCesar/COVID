@@ -1,10 +1,12 @@
 import pandas as pd
 
+###### Tabela de Info (Cases / Deaths)
 def clasifica_df(df,menu,d,NT):
     df_faz_dash = df.query(f'date == "{d}" and continent== "{menu}"') 
     df_faz_dash = df_faz_dash.sort_values(by=[NT],ascending=False)
     return df_faz_dash
 
+###### Tabela de Info (Vaccination)
 def faz_tabela_vacina(df,menu,nt):
     df1 = df.query(f'continent== "{menu}"') 
     df2 = df1[df1['people_fully_vaccinated' ].notna()]
@@ -13,13 +15,9 @@ def faz_tabela_vacina(df,menu,nt):
     df4 = df3.groupby(['location']).max().reset_index()
     #df4['date'] = df4['date'].astype('datetime64')
     df5 = df4.sort_values(by=[nt],ascending=False)
-    return(df5)
-        
-def titulo(frase):
-    a = frase.split("_")
-    b = " ".join(a).title()
-    return b
+    return(df5)   
 
+######## Tabela de Epicenter
 def tabela_group_continente(df):
     a = df[['location','date','new_cases','new_deaths','population']][df['location'].isin(['South America','Africa','Europe',
                                                                                            'Asia','Oceania','North America'])]
@@ -30,15 +28,7 @@ def tabela_group_continente(df):
     source['new_cases_by_population']=source.new_cases/source.population * 10**6
     return source
 
-def tabela_group_pais(df):
-    a = df[['location','date','new_cases','new_deaths','population']][~df['location'].isin(['South America','Africa','Europe',
-                                                                                           'Asia','Oceania','North America'])]
-    a.date = a.date.astype('datetime64')
-    source = a.groupby([pd.Grouper(key="date", freq="1M"),"location",'population']).sum().reset_index()
-    source['new_deaths_by_population']=source.new_deaths/source.population * 10**6
-    source['new_cases_by_population']=source.new_cases/source.population * 10**6
-    return source
-
+######## Tabela de vacinados
 def tabela_extra(df1):
     df2 = df1[df1['people_fully_vaccinated' ].notna()]
     df3 = df2[['location','iso_code','date','people_fully_vaccinated',
@@ -47,3 +37,9 @@ def tabela_extra(df1):
     #df4['date'] = df4['date'].astype('datetime64')
     #df5 = df4.sort_values(by=[nt],ascending=False)
     return(df4)
+
+# Utilizei para escrever o titulos
+def titulo(frase):
+    a = frase.split("_")
+    b = " ".join(a).title()
+    return b
