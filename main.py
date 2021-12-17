@@ -239,6 +239,7 @@ if P1 == 'Info':
 if P1=='Epicenter':
     
     l0c1.markdown(f'# Epicenter')
+    hrEscrever.markdown('')
     
     st.markdown(' ')
     mundial1,mundial2 = st.columns([1,2])
@@ -262,12 +263,16 @@ if P1=='Vaccine':
     
     l0c1.markdown(f'# Vaccine')
     hrEscrever.markdown('')
+    
     df=dados()
     df=auxilio.tabela_extra(df)
     vac = vac.vaq1(df)
     st.markdown(' ')
-    b,area,b=st.columns([1,3,1])
+    vaccine1,area,vaccine2=st.columns([1,3,1])
     area.altair_chart(vac)
+    
+    vaccine1.markdown('')
+    vaccine2.markdown('')
     
     
     
@@ -277,6 +282,7 @@ if P1=='Vaccine':
 if P1=='The Vis':
     
     l0c1.markdown(f'# The Vis')
+    hrEscrever.markdown('')
     
     st.markdown("""
     <div id = 'tudo' style='font-family: "Courier", Courier, monospace;'>
