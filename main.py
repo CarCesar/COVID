@@ -48,9 +48,13 @@ P1 = l0c2.selectbox("",
      ('Info', 'Epicenter','Vaccine','The Vis'))
 
 if P1 == 'Info':
-    b0, b, l1c1, b ,l1c2, l1c3,b= st.columns([2,2,5,1,1.5,3,1])
+    b0, info1, l1c1, info2 ,l1c2, l1c3,info3= st.columns([2,2,5,1,1.5,3,1])
     P2 = b0.selectbox('TYPE:',['Cases', 'Deaths', 'Vaccination'])
     ### Várias faces ...
+    
+    info1.markdown('')
+    info2.markdown('')
+    info3.markdown('')
 
     ## Face 0 - CASOS      ##################################################################################################################################
 
