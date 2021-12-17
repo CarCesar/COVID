@@ -261,7 +261,7 @@ if P1=='Epicenter':
 if P1=='Vaccine':
     
     l0c1.markdown(f'# Vaccine')
-    
+    hrEscrever.markdown('')
     df=dados()
     df=auxilio.tabela_extra(df)
     vac = vac.vaq1(df)
