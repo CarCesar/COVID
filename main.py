@@ -104,7 +104,9 @@ if P1 == 'Info':
                               ,delta_color="inverse")
 
         # Linha 2
-        b,f0l2c1,b=st.columns([5,24,1])
+        casos1,f0l2c1,casos2=st.columns([5,24,1])
+        casos1.markdown('')
+        casos2.markdown('')
 
         #df para grafico 2
         df2 = df1.query(f'{nt}>0')
@@ -162,7 +164,9 @@ if P1 == 'Info':
                               delta='{0:,}'.format(int(paises['new_deaths'])),delta_color="inverse")
 
         # Linha 2
-        b,f1l2c1,b=st.columns([5,24,1])
+        mortes1,f1l2c1,mortes2=st.columns([5,24,1])
+        mortes1.markdown('')
+        mortes2.markdown('')
 
         #df para grafico 2
         df2 = df1.query(f'{nt}>0')
@@ -226,14 +230,9 @@ if P1 == 'Info':
 
 
        # Linha 2
-        b,f2l2c1,b=st.columns([5,24,1])
-
-        # linha 3
-        if nt =='Total deaths': 
-            b,f2l3c1,b=st.columns([13,16,1])
-            logaritmo1 = f2l3c1.checkbox('log scale')
-        else:
-            logaritmo1 = False
+        vacinados1,f2l2c1,vacinados2=st.columns([5,24,1])
+        vacinados1.markdown('')
+        vacinados2.markdown('')
 
         # componente linha 2
         g1 = graficos.grafico2(df1,nt,nt0,logaritmo)
