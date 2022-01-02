@@ -71,7 +71,7 @@ if P1 == 'Info':
 
         d = b0.date_input('Date',value=datetime.date(2021, 12, 1),
                                   min_value= datetime.date(2020, 1, 1),
-                                  max_value= datetime.date(2021, 12, 10) )
+                                  max_value= datetime.date(2021, 12, 31) )
 
         l0c1.markdown(' \n ')
 
@@ -131,7 +131,7 @@ if P1 == 'Info':
 
         d = b0.date_input('Date',value=datetime.date(2021, 12, 1),
                                   min_value= datetime.date(2020, 1, 1),
-                                  max_value= datetime.date(2021, 12, 10) )
+                                  max_value= datetime.date(2021, 12, 31) )
         
         #Titulo
         hrEscrever.markdown(f'## {NT} - {menu}')
