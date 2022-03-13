@@ -22,10 +22,10 @@ st.set_page_config(page_title='COVID-WORLD',
 ### Dados
 @st.cache
 def dadosInteiros():
-    df=pd.read_csv('https://covid.ourworldindata.org/data/owid-covid-data.csv')
-    #df = pd.read_csv('.dados/data.csv')
-    ISO = pd.read_csv('https://raw.githubusercontent.com/stefangabos/world_countries/master/data/en/countries.csv')
-    #ISO = pd.read_csv('.dados/ISO.csv')
+    #df=pd.read_csv('https://covid.ourworldindata.org/data/owid-covid-data.csv')
+    df = pd.read_csv('.dados/data.csv')
+    #ISO = pd.read_csv('https://raw.githubusercontent.com/stefangabos/world_countries/master/data/en/countries.csv')
+    ISO = pd.read_csv('.dados/ISO.csv')
     ISO['alpha3']=[a.upper() for a in ISO['alpha3']]
     ISO['flag']=['https://raw.githubusercontent.com/csmoore/country-flag-icons/master/country-flags-4x3-png/'+a+'.png' for a in ISO['alpha2']]
     df2=df.merge(ISO[['id','alpha3','flag']].rename(columns={'alpha3':'iso_code'}),how='left',on='iso_code')
